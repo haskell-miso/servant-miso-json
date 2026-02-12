@@ -29,7 +29,7 @@ import           Miso.JSON (ToJSON (..), encode)
 --
 data JSON
 ----------------------------------------------------------------------------
--- | @text/html;charset=utf-8@
+-- | @application/json;charset=utf-8@
 instance Accept JSON where
     contentTypes _ =
       "application" M.// "json" M./: ("charset", "utf-8") NE.:|
