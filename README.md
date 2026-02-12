@@ -7,6 +7,8 @@ This package provides a `JSON` content type for use with [servant](https://hacka
 
 ```haskell
 import Servant.Miso.JSON (JSON)
+import Miso.String (MisoString)
+import Miso.JSON (ToJSON)
 
 data Person
   = Person
