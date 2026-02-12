@@ -18,11 +18,11 @@ module Servant.Miso.JSON
   ) where
 ----------------------------------------------------------------------------
 import qualified Data.List.NonEmpty as NE
-import           Data.Text.Encoding (encodeUtf8)
 import           Servant.API (Accept (..), MimeRender (..))
 import qualified Network.HTTP.Media as M
 ----------------------------------------------------------------------------
 import           Miso.JSON (ToJSON (..), encode)
+import           Miso.String (fromMisoString)
 ----------------------------------------------------------------------------
 -- | HTML MimeType used for servant APIs
 --
@@ -38,5 +38,5 @@ instance Accept JSON where
 ----------------------------------------------------------------------------
 -- | Render JSON from a servant API
 instance ToJSON a => MimeRender JSON a where
-  mimeRender _ = encodeUtf8 . encode
+  mimeRender _ = fromMisoString . encode
 ----------------------------------------------------------------------------
