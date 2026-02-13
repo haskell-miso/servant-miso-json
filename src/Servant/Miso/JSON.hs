@@ -17,12 +17,13 @@ module Servant.Miso.JSON
     JSON
   ) where
 ----------------------------------------------------------------------------
+import           Data.Bifunctor (first)
 import qualified Data.List.NonEmpty as NE
-import           Servant.API (Accept (..), MimeRender (..))
+import           Servant.API (Accept (..), MimeRender (..), MimeUnrender (..))
 import qualified Network.HTTP.Media as M
 ----------------------------------------------------------------------------
-import           Miso.JSON (ToJSON (..), encode)
-import           Miso.String (fromMisoString)
+import           Miso.JSON (FromJSON (..), ToJSON (..), encode, eitherDecode)
+import           Miso.String (fromMisoString, toMisoString, unpack)
 ----------------------------------------------------------------------------
 -- | HTML MimeType used for servant APIs
 --
@@ -39,4 +40,8 @@ instance Accept JSON where
 -- | Render JSON from a servant API
 instance ToJSON a => MimeRender JSON a where
   mimeRender _ = fromMisoString . encode
+----------------------------------------------------------------------------
+-- | Unrender JSON from a servant API
+instance FromJSON a => MimeUnrender JSON a where
+  mimeUnrender _ = first unpack . eitherDecode . toMisoString
 ----------------------------------------------------------------------------
