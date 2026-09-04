@@ -1,6 +1,9 @@
 servant-miso-json
 ============================
 
+> [!TIP]
+> As of `1.13`, if using the `-faeson` flag, this package becomes unnecessary
+
 This package provides a `JSON` content type for use with [servant](https://hackage.haskell.org/packages/servant) APIs. This can be used to render [miso](https://github.com/dmjio/miso) `Value` types as JSON.
 
 ### Usage
